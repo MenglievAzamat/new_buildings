@@ -31,10 +31,22 @@ if(isset($_POST["quiz"])) {
 
     //mail($to, $subject, $message);
 }
+
 if(isset($_POST["modal"])) {
     $subject = "--- Заявка на звонок ---";
     $message = "\nИмя: " . $_POST["name"] .
                 "\nКонтакты: " . $_POST["phone_number"];
+
+    //mail($to, $subject, $message);
+}
+
+if(isset($_POST["calc"])) {
+    $subject = "--- Расчёт ипотеки ---";
+    $message = "\nСтоимость квартиры: " . $_POST["price_id"] .
+               "\nПервоначальный взнос: " . $_POST["payment"] .
+               "\nСрок ипотеки: " . $_POST["mortgage"] .
+               "\n\nИмя: " . $_POST["name"] .
+               "\nКонтакты: " . $_POST["phone_number"];
 
     //mail($to, $subject, $message);
 }

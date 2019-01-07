@@ -60,20 +60,20 @@
         <div class="header_logo"></div>
         <div class="header_nav">
             <ul>
-                <li>Преимущества</li>
-                <li>Пакеты услуг</li>
-                <li>Рассрочка Халяль</li>
-                <li>Каталог</li>
-                <li>Контакты</li>
+                <li><a data-scroll href="#">Преимущества</a></li>
+                <li><a data-scroll href="#packages">Пакеты услуг</a></li>
+                <li><a data-scroll href="#halal">Рассрочка Халяль</a></li>
+                <li><a data-scroll href="#">Каталог</a></li>
+                <li><a data-scroll href="#contacts">Контакты</a></li>
             </ul>
         </div>
         <div class="header_contacts">
-            <a href="tel:+7 (843) 207-03-47">+7 (843) 207-03-47
-                <span class="tel_comment">Заказать звонок</span>
+            <a href="#">+7 (843) 207-03-47
+                <span class="tel_comment modal_trigger">Заказать звонок</span>
             </a>
         </div>
     </div>
-    <div class="header_item">
+    <div class="header_item invisible_item">
         <ul class="header_small_nav">
             <li>Земельные участки</li>
             <li>Лазурные небеса</li>
@@ -925,21 +925,21 @@
                     <div class="param_item">
                         <h3>Стоимость квартиры</h3>
                         <div class="calc_line">
-                            <input class="count_input" type="text" id="price_id" name="price_id" value=""
+                            <input class="count_input" type="text" id="price_id" value=""
                                    onchange="count()"/>
                         </div>
                     </div>
                     <div class="param_item">
                         <h3>Первоначальный взнос</h3>
                         <div class="calc_line">
-                            <input class="count_input" type="text" id="payment" name="payment" value=""
+                            <input class="count_input" type="text" id="payment" value=""
                                    onchange="count()"/>
                         </div>
                     </div>
                     <div class="param_item">
                         <h3>Срок ипотеки</h3>
                         <div class="calc_line">
-                            <input class="count_input" type="text" id="mortgage" name="mortgage" value=""
+                            <input class="count_input" type="text" id="mortgage" value=""
                                    onchange="count()"/>
                         </div>
                     </div>
@@ -990,7 +990,7 @@
             </div>
         </div>
         <div class="count_section">
-            <button id="open_for_modal modal_trigger" class="btn count_start">Получить расчет</button>
+            <button id="calc" class="btn count_start modal_trigger">Получить расчет</button>
         </div>
     </div>
 </section>
@@ -1110,7 +1110,7 @@
         <button class="our_help_btn btn modal_trigger">Оставить заявку</button>
     </div>
 </section>
-<section class="halal">
+<section id="halal" class="halal">
     <h2><span class="halal_styled_text">Возможности</span> там, где их нет...</h2>
     <span class="halal_period_text">рассрочка <span class="halal_styled_text">до 10 лет</span></span>
     <div class="halal_content">
@@ -1273,7 +1273,7 @@
         <button class="halal_btn btn modal_trigger">узнать подробнее</button>
     </div>
 </section>
-<section class="packages">
+<section id="packages" class="packages">
     <h2>пакеты <span class="packeges_styled_text">услуг</span></h2>
     <div class="packeges_content main_packeges">
         <div class="packeges_content_item">
@@ -1456,7 +1456,7 @@
     </div>
     <button class="presents_btn btn modal_trigger">Оставить заявку</button>
 </section>
-<section class="map">
+<section id="contacts" class="map">
     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A19082c69cea20038029cac278be2e42607b40786bc2103371c36e5fffb33a3b8&amp;source=constructor"
             frameborder="0"></iframe>
     <div class="map_contact_info">
@@ -1481,8 +1481,8 @@
     <div class="footer_content">
         <div class="footer_item">
             <div class="footer_logo"></div>
-            <a href="tel:++7 (843) 207-03-47">+7 (843) 207-03-47 <br>
-                <span class="tel_text">Заказать звонок</span>
+            <a href="#">+7 (843) 207-03-47 <br>
+                <span class="tel_text modal_trigger">Заказать звонок</span>
             </a>
         </div>
         <div class="footer_item">
@@ -1517,10 +1517,14 @@
     <div id="modal_btn" class="close_btn">
     </div>
     <form id="prompt-form" method="post" action="mail.php">
+        <input type="hidden" id="price_id_h" name="price_id">
+        <input type="hidden" id="payment_h" name="payment">
+        <input type="hidden" id="mortgage_h" name="mortgage">
+
         <input class="modal_window_input" name="name" type="text" placeholder="Введите Ваше имя">
         <input class="modal_window_input" id="numberPhone" name="phone_number" type="text"
                placeholder="+7 (___) ___-__-__">
-        <button class="modal_window_submit_btn" name="modal" type="submit">Заказать звонок</button>
+        <button class="modal_window_submit_btn" id="modal_button" name="modal" type="submit">Заказать звонок</button>
     </form>
 </section>
 <div class="overlay invisible_item"></div>
@@ -1534,6 +1538,13 @@
     $(document).ready(function () {
         $("input#phone_no").mask("+7 (999) 999-99-99");
         $("input#numberPhone").mask("+7 (999) 999-99-99");
+
+        $("button#calc").on("click", function(e) {
+            $("button#modal_button").attr("name", "calc");
+            $("input#price_id_h").attr("value", $("input#price_id").val());
+            $("input#payment_h").attr("value", $("input#payment").val());
+            $("input#mortgage_h").attr("value", $("input#mortgage").val());
+        });
     });
 </script>
 </body>

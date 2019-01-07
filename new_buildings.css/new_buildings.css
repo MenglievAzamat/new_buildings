@@ -4483,6 +4483,11 @@ footer {
     }
 }
 
+div.header_nav a {
+    color: white;
+    text-decoration: none;
+}
+
 /* ----
 needs to be 
 adaptated in this limits  1001 px to 1200px && 1300px to end
