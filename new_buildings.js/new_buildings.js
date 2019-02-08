@@ -55,9 +55,13 @@ function count() {
     var mortgage_time = mortgage.split(" ").join('');
 
     sum_of_mortgage = Number(price_to_count) - Number(payment_to_count);
-    condition_value.innerHTML = sum_of_mortgage.toLocaleString() + " руб.";
-
-    result.innerHTML = Math.round(sum_of_mortgage / (12 * Number(mortgage_time))).toLocaleString() + " руб.";
+    if (Number(sum_of_mortgage) > 0 || Math.round(sum_of_mortgage / (12 * Number(mortgage_time))) > 0) {
+        condition_value.innerHTML = sum_of_mortgage.toLocaleString() + " руб.";
+        result.innerHTML = Math.round(sum_of_mortgage / (12 * Number(mortgage_time))).toLocaleString() + " руб.";
+    } else {
+        condition_value.innerHTML = 0 + " руб.";
+        result.innerHTML = 0 + " руб.";
+    }
 
 }
 
